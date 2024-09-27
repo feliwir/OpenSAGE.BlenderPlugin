@@ -714,9 +714,6 @@ class TestUtils(TestCase):
             type=1,
             time_codes=time_codes)
 
-        # animation.time_coded_channels = [channel, channel_q]
-
-        # if bpy.app.version >= (4, 2, 0):
         animation.time_coded_channels = [channel, channel_q]
 
         self.compare_data([], None, None, [], None, animation)
