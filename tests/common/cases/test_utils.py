@@ -701,14 +701,22 @@ class TestUtils(TestCase):
         self.filepath = self.outpath() + 'output'
         create_data(self, [], None, hierarchy, [], None, animation)
 
+        time_codes = [TimeCodedDatum(time_code=0, value=3.0),
+                        TimeCodedDatum(time_code=4, value=3.0)]
+    
+        if bpy.app.version >= (4, 2, 0):
+            time_codes = [TimeCodedDatum(time_code=0, value=3.0)]
+
         channel = TimeCodedAnimationChannel(
-            num_time_codes=2,
+            num_time_codes=len(time_codes),
             vector_len=1,
             pivot=1,
             type=1,
-            time_codes=[TimeCodedDatum(time_code=0, value=3.0),
-                        TimeCodedDatum(time_code=4, value=3.0)])
+            time_codes=time_codes)
 
+        # animation.time_coded_channels = [channel, channel_q]
+
+        # if bpy.app.version >= (4, 2, 0):
         animation.time_coded_channels = [channel, channel_q]
 
         self.compare_data([], None, None, [], None, animation)

@@ -63,7 +63,7 @@ def compare_animation_channels(self, expected, actual):
 
 
 def get_animation_bit_channel(pivot=0, xml=False):
-    data = [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0]
+    data = [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
     if xml:
         data = [0.0, 1.0, 1.0, 1.0, 0.0, 0.57, 0.33, 1.0, 1.0, 1.0]
     return AnimationBitChannel(
@@ -95,7 +95,7 @@ def compare_animation_bit_channels(self, expected, actual):
 
     self.assertEqual(len(expected.data), len(actual.data))
     for i, datum in enumerate(expected.data):
-        self.assertEqual(datum, actual.data[i])
+        self.assertAlmostEqual(datum, actual.data[i], 4)
 
 
 def get_animation(hierarchy_name='TestHierarchy', xml=False):

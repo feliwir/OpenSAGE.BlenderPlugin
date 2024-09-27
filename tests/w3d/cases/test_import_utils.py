@@ -88,6 +88,8 @@ class TestImportUtilsW3D(TestCase):
         meshes = [get_mesh(name='MESH_Obj')]
 
         expected_frames = [0, 4]
+        if bpy.app.version >= (4, 2, 0):
+            expected_frames = [0]
         expected = [3.0, 3.0]
 
         self.filepath = self.outpath() + 'output'

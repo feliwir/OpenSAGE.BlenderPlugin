@@ -23,7 +23,8 @@ def create_mesh(context, mesh_struct, coll):
         context.warning("Mesh name automatically fixed due to duplication, new name: " + actual_mesh_name)
 
     mesh.normals_split_custom_set_from_vertices(mesh_struct.normals)
-    mesh.use_auto_smooth = True
+    if bpy.app.version < (4, 2, 0):
+        mesh.use_auto_smooth = True
 
     mesh.object_type = 'MESH'
     mesh.userText = mesh_struct.user_text
